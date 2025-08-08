@@ -112,10 +112,15 @@ class ConsumetService:
             async with aiohttp.ClientSession() as session:
                 async with session.get(url, params=params, timeout=30) as response:
                     if response.status == 200:
-                        data = await response.json()
-                        # Cache for shorter time (streams change frequently)
-                        cache[cache_key] = data
-                        return data
+                        # Try to parse as JSON
+                        try:
+                            data = await response.json()
+                            cache[cache_key] = data
+                            return data
+                        except:
+                            # If not JSON, return empty dict
+                            logger.warning(f"Consumet API returned non-JSON response for {endpoint}")
+                            return {}
                     else:
                         logger.error(f"Consumet API error: {response.status}")
                         return {}
