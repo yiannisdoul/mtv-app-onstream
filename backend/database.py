@@ -136,11 +136,20 @@ class DatabaseService:
             "expires_at": expires_at
         }
         
-        await self.db.streams.update_one(
+        result = await self.db.streams.update_one(
             {"tmdb_id": tmdb_id},
             {"$set": stream_doc},
             upsert=True
         )
+        
+        # Add the database ID for return object
+        if result.upserted_id:
+            stream_doc["_id"] = str(result.upserted_id)
+        else:
+            # Get existing doc ID
+            existing = await self.db.streams.find_one({"tmdb_id": tmdb_id})
+            if existing:
+                stream_doc["_id"] = str(existing["_id"])
         
         return StreamResponse(**stream_doc)
     
