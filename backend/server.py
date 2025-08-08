@@ -173,7 +173,7 @@ async def register_user(user_data: UserCreate, request: Request, db = Depends(ge
 
 @api_router.post("/auth/login", response_model=APIResponse)
 @limiter.limit("10/minute")
-async def login_user(login_data: UserLogin, request, db = Depends(get_db)):
+async def login_user(login_data: UserLogin, request: Request, db = Depends(get_db)):
     """Login user and return JWT token."""
     try:
         # Authenticate user
