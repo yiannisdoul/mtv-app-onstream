@@ -109,7 +109,7 @@ class StreamSource(BaseModel):
     headers: Optional[Dict[str, str]] = None
 
 class StreamResponse(BaseModel):
-    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     tmdb_id: int
     sources: List[StreamSource] = []
     subtitles: List[Dict[str, Any]] = []
@@ -117,9 +117,8 @@ class StreamResponse(BaseModel):
     expires_at: datetime
     
     class Config:
-        validate_by_name = True
+        populate_by_name = True
         arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
 
 # API Response Models
 class PaginatedResponse(BaseModel):
