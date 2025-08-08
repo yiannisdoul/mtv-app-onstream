@@ -284,7 +284,7 @@ async def get_movies(
 
 @api_router.get("/movies/{movie_id}", response_model=APIResponse)
 @limiter.limit("60/minute")
-async def get_movie_details(movie_id: int, request, db = Depends(get_db)):
+async def get_movie_details(movie_id: int, request: Request, db = Depends(get_db)):
     """Get detailed information about a specific movie/TV show."""
     try:
         # Check cache first
