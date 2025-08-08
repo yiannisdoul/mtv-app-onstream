@@ -132,11 +132,13 @@ def normalize_movie_data(movie_data: Dict[str, Any]) -> Dict[str, Any]:
     
     return {
         "id": movie_data.get("id"),
+        "tmdb_id": movie_data.get("id"),  # Make sure tmdb_id is set
         "title": title,
         "overview": movie_data.get("overview", ""),
         "poster_path": f"https://image.tmdb.org/t/p/w500{movie_data['poster_path']}" if movie_data.get("poster_path") else None,
         "backdrop_path": f"https://image.tmdb.org/t/p/w1280{movie_data['backdrop_path']}" if movie_data.get("backdrop_path") else None,
         "release_date": movie_data.get("release_date") or movie_data.get("first_air_date"),
+        "first_air_date": movie_data.get("first_air_date"),
         "genres": [{"id": g["id"], "name": g["name"]} for g in movie_data.get("genres", [])],
         "vote_average": movie_data.get("vote_average", 0.0),
         "vote_count": movie_data.get("vote_count", 0),
