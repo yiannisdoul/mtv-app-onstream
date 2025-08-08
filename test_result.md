@@ -267,6 +267,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ WORKING - TMDB API integration is functional. Real movie data is being fetched and cached successfully. Trending movies, popular content, and movie details are loading from TMDB API with proper metadata."
+      - working: true
+        agent: "testing"
+        comment: "✅ POST-MTV BRANDING VERIFICATION - TMDB API integration confirmed working. Get Trending endpoint successfully retrieved 20 trending items. Get Movie Details successfully retrieved Fight Club details. TMDB API functionality remains fully operational after frontend branding updates."
 
   - task: "Streaming Sources API"
     implemented: true
