@@ -3,24 +3,111 @@ import { Link } from 'react-router-dom';
 import { Play, Download, Plus, Star } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
+import { useToast } from '../hooks/use-toast';
+import { moviesAPI, userAPI } from '../services/api';
+import { useAuth } from '../contexts/AuthContext';
 
 const ContentRow = ({ title, content }) => {
-  const handleQuickPlay = (item, e) => {
+  const { isLoggedIn } = useAuth();
+  const { toast } = useToast();
+
+  const handleQuickPlay = async (item, e) => {
     e.preventDefault();
     e.stopPropagation();
-    alert(`Playing ${item.title}...`);
+    
+    try {
+      // Add to watch history if logged in
+      if (isLoggedIn) {
+        await userAPI.addToWatchHistory({
+          tmdb_id: item.tmdb_id,
+          title: item.title,
+          poster_path: item.poster_path,
+          type: item.type || 'movie'
+        });
+      }
+
+      // Get streaming sources
+      const streamResponse = await moviesAPI.getStreamingSources(item.tmdb_id);
+      if (streamResponse.success && streamResponse.data.sources.length > 0) {
+        // Navigate to movie details page for better player experience
+        window.location.href = `/movie/${item.tmdb_id}?autoplay=true`;
+      } else {
+        toast({
+          title: "No Sources Found",
+          description: "Sorry, no streaming sources are available for this content.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      console.error('Error getting streaming sources:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load streaming sources. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDownload = (item, e) => {
     e.preventDefault();
     e.stopPropagation();
-    alert(`Downloading ${item.title}...`);
+    
+    if (!isLoggedIn) {
+      toast({
+        title: "Sign In Required",
+        description: "Please sign in to download content.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Mock download functionality
+    toast({
+      title: "Download Started",
+      description: `${item.title} has been added to your downloads.`
+    });
   };
 
-  const handleAddToList = (item, e) => {
+  const handleAddToList = async (item, e) => {
     e.preventDefault();
     e.stopPropagation();
-    alert(`Added ${item.title} to your list!`);
+    
+    if (!isLoggedIn) {
+      toast({
+        title: "Sign In Required",
+        description: "Please sign in to add movies to your list.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      await userAPI.addToFavorites({
+        tmdb_id: item.tmdb_id,
+        title: item.title,
+        poster_path: item.poster_path,
+        type: item.type || 'movie'
+      });
+      
+      toast({
+        title: "Success",
+        description: `Added ${item.title} to your list!`
+      });
+    } catch (error) {
+      if (error.message.includes('already')) {
+        toast({
+          title: "Already in List",
+          description: `${item.title} is already in your favorites.`
+        });
+      } else {
+        console.error('Error adding to favorites:', error);
+        toast({
+          title: "Error",
+          description: "Failed to add to your list. Please try again.",
+          variant: "destructive"
+        });
+      }
+    }
   };
 
   return (
@@ -29,16 +116,19 @@ const ContentRow = ({ title, content }) => {
       <div className="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
         {content.map((item) => (
           <Link
-            key={item.id}
-            to={`/movie/${item.id}`}
+            key={item.tmdb_id || item.id}
+            to={`/movie/${item.tmdb_id || item.id}`}
             className="flex-none group"
           >
             <Card className="w-48 md:w-56 bg-gray-800 border-gray-700 overflow-hidden hover:bg-gray-700 transition-all duration-300 transform hover:scale-105">
               <div className="relative">
                 <img
-                  src={item.poster}
+                  src={item.poster_path}
                   alt={item.title}
                   className="w-full h-72 object-cover"
+                  onError={(e) => {
+                    e.target.src = 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=450&fit=crop';
+                  }}
                 />
                 
                 {/* Hover Overlay */}
@@ -71,17 +161,22 @@ const ContentRow = ({ title, content }) => {
                 </div>
 
                 {/* Quality Badge */}
-                {item.quality && (
-                  <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 text-xs rounded">
-                    {item.quality}
+                <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 text-xs rounded">
+                  HD
+                </div>
+
+                {/* Rating */}
+                {item.vote_average && (
+                  <div className="absolute top-2 right-2 flex items-center space-x-1 bg-black/70 px-2 py-1 rounded">
+                    <Star className="h-3 w-3 text-yellow-400 fill-current" />
+                    <span className="text-white text-xs">{item.vote_average.toFixed(1)}</span>
                   </div>
                 )}
 
-                {/* Rating */}
-                {item.rating && (
-                  <div className="absolute top-2 right-2 flex items-center space-x-1 bg-black/70 px-2 py-1 rounded">
-                    <Star className="h-3 w-3 text-yellow-400 fill-current" />
-                    <span className="text-white text-xs">{item.rating}</span>
+                {/* Type Badge */}
+                {item.type && (
+                  <div className="absolute bottom-2 left-2 bg-gray-700 text-white px-2 py-1 text-xs rounded uppercase">
+                    {item.type}
                   </div>
                 )}
               </div>
@@ -91,21 +186,21 @@ const ContentRow = ({ title, content }) => {
                   {item.title}
                 </h3>
                 <div className="flex items-center justify-between text-xs text-gray-400">
-                  <span>{item.year}</span>
-                  {item.type === 'series' ? (
-                    <span>{item.seasons} Season{item.seasons > 1 ? 's' : ''}</span>
+                  <span>{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4) || 'N/A'}</span>
+                  {item.type === 'tv' ? (
+                    <span>{item.number_of_seasons || 1}S</span>
                   ) : (
-                    <span>{item.duration}</span>
+                    <span>{item.runtime ? `${item.runtime}m` : 'Movie'}</span>
                   )}
                 </div>
-                {item.genre && (
+                {item.genres && item.genres.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-2">
-                    {item.genre.slice(0, 2).map((g) => (
+                    {item.genres.slice(0, 2).map((g) => (
                       <span
-                        key={g}
+                        key={g.id || g.name}
                         className="bg-gray-700 text-gray-300 px-2 py-1 text-xs rounded"
                       >
-                        {g}
+                        {g.name || g}
                       </span>
                     ))}
                   </div>
