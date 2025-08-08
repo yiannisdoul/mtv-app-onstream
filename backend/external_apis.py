@@ -3,7 +3,13 @@ import os
 from typing import List, Dict, Any, Optional
 from cachetools import TTLCache
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+from pathlib import Path
 import logging
+
+# Load environment variables
+ROOT_DIR = Path(__file__).parent
+load_dotenv(ROOT_DIR / '.env', override=True)
 
 logger = logging.getLogger(__name__)
 
@@ -11,6 +17,10 @@ logger = logging.getLogger(__name__)
 TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 TMDB_BASE_URL = "https://api.themoviedb.org/3"
 CONSUMET_API_BASE = os.getenv("CONSUMET_API_BASE", "https://api.consumet.org")
+
+# Debug logging
+logger.info(f"TMDB API Key loaded: {'Yes' if TMDB_API_KEY else 'No'}")
+logger.info(f"Consumet API Base: {CONSUMET_API_BASE}")
 
 # Simple in-memory cache
 cache = TTLCache(maxsize=1000, ttl=3600)  # 1 hour TTL
