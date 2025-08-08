@@ -77,30 +77,35 @@ class OnStreamAPITester:
     
     async def test_health_check(self):
         """Test health check endpoint."""
-        response = await self.make_request("GET", f"{BACKEND_URL}/health")
-        
-        if response["status"] == 200:
-            data = response["data"]
-            if data.get("status") == "healthy":
-                self.log_result("Health Check", True, "Backend is healthy", data)
-            else:
-                self.log_result("Health Check", False, "Unexpected health status", data)
-        else:
-            self.log_result("Health Check", False, f"HTTP {response['status']}", response["data"])
+        # Health endpoint is not under /api prefix
+        url = f"{BACKEND_URL}/health"
+        try:
+            async with self.session.get(url) as response:
+                data = await response.json()
+                if response.status == 200 and data.get("status") == "healthy":
+                    self.log_result("Health Check", True, "Backend is healthy", data)
+                else:
+                    self.log_result("Health Check", False, f"HTTP {response.status}", data)
+        except Exception as e:
+            self.log_result("Health Check", False, f"Request failed: {str(e)}")
     
     async def test_api_docs(self):
         """Test API documentation endpoint."""
-        response = await self.make_request("GET", f"{BACKEND_URL}/api/docs")
-        
-        if response["status"] == 200:
-            # Check if it's HTML content (FastAPI docs)
-            content_type = response["headers"].get("content-type", "")
-            if "text/html" in content_type:
-                self.log_result("API Docs", True, "FastAPI documentation accessible")
-            else:
-                self.log_result("API Docs", False, "Unexpected content type", {"content_type": content_type})
-        else:
-            self.log_result("API Docs", False, f"HTTP {response['status']}", response["data"])
+        # API docs endpoint is under /api prefix
+        url = f"{BACKEND_URL}/api/docs"
+        try:
+            async with self.session.get(url) as response:
+                if response.status == 200:
+                    content_type = response.headers.get("content-type", "")
+                    if "text/html" in content_type:
+                        self.log_result("API Docs", True, "FastAPI documentation accessible")
+                    else:
+                        self.log_result("API Docs", False, "Unexpected content type", {"content_type": content_type})
+                else:
+                    text = await response.text()
+                    self.log_result("API Docs", False, f"HTTP {response.status}", {"text": text[:200]})
+        except Exception as e:
+            self.log_result("API Docs", False, f"Request failed: {str(e)}")
     
     async def test_user_registration(self):
         """Test user registration."""
