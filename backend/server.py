@@ -220,7 +220,7 @@ async def login_user(login_data: UserLogin, request: Request, db = Depends(get_d
 
 @api_router.get("/auth/me", response_model=APIResponse)
 @limiter.limit("30/minute")
-async def get_current_user_info(request, current_user: User = Depends(get_current_user_with_db)):
+async def get_current_user_info(request: Request, current_user: User = Depends(get_current_user_with_db)):
     """Get current user information."""
     return APIResponse(
         success=True,
