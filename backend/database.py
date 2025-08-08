@@ -94,11 +94,20 @@ class DatabaseService:
         }
         
         # Upsert movie data
-        await self.db.movies.update_one(
+        result = await self.db.movies.update_one(
             {"tmdb_id": movie_data["id"]},
             {"$set": movie_doc},
             upsert=True
         )
+        
+        # Add the database ID for return object
+        if result.upserted_id:
+            movie_doc["_id"] = str(result.upserted_id)
+        else:
+            # Get existing doc ID
+            existing = await self.db.movies.find_one({"tmdb_id": movie_data["id"]})
+            if existing:
+                movie_doc["_id"] = str(existing["_id"])
         
         return MovieMetadata(**movie_doc)
     
