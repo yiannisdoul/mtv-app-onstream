@@ -292,14 +292,13 @@ metadata:
   test_sequence: 1
 
 test_plan:
-  current_focus:
-    - "Homepage Loading with Real TMDB Data"
-    - "Movie Browsing with Filters"
-    - "Search Functionality"
-    - "Movie Details Page"
+  current_focus: []
+  stuck_tasks:
     - "Authentication System"
-    - "Video Player Integration"
-  stuck_tasks: []
+    - "Video Player Integration" 
+    - "User Features (Favorites/Watchlist)"
+    - "Streaming Sources API"
+    - "User Authentication API"
   test_all: true
   test_priority: "high_first"
 
