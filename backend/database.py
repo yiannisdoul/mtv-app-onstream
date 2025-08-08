@@ -161,6 +161,8 @@ class DatabaseService:
         })
         
         if stream_doc:
+            # Convert ObjectId to string
+            stream_doc["_id"] = str(stream_doc["_id"])
             return StreamResponse(**stream_doc)
         return None
     
