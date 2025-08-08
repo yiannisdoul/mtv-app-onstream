@@ -310,9 +310,7 @@ test_plan:
   current_focus: []
   stuck_tasks:
     - "Authentication System"
-    - "Video Player Integration" 
     - "User Features (Favorites/Watchlist)"
-    - "Streaming Sources API"
     - "User Authentication API"
   test_all: true
   test_priority: "high_first"
