@@ -1,22 +1,26 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.onstream.app',
-  appName: 'OnStream',
+  appId: 'com.moviesandtv.mtv',
+  appName: 'MTV',
   webDir: 'frontend/build',
   server: {
     androidScheme: 'https'
   },
   plugins: {
     SplashScreen: {
-      launchShowDuration: 2000,
-      backgroundColor: '#111827',
+      launchShowDuration: 2500,
+      backgroundColor: '#FF6B35',
       showSpinner: false,
-      spinnerColor: '#ef4444'
+      spinnerColor: '#FFFFFF',
+      androidSplashResourceName: 'splash',
+      androidScaleType: 'CENTER_CROP',
+      splashFullScreen: true,
+      splashImmersive: true
     },
     StatusBar: {
       style: 'dark',
-      backgroundColor: '#111827'
+      backgroundColor: '#FF6B35'
     },
     Keyboard: {
       resize: 'body',
@@ -29,11 +33,13 @@ const config: CapacitorConfig = {
   android: {
     allowMixedContent: true,
     captureInput: true,
-    webContentsDebuggingEnabled: false
+    webContentsDebuggingEnabled: false,
+    backgroundColor: '#0A0A0B'
   },
   ios: {
     contentInset: 'automatic',
-    scrollEnabled: true
+    scrollEnabled: true,
+    backgroundColor: '#0A0A0B'
   }
 };
 

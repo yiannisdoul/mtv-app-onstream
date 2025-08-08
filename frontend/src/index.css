@@ -16,8 +16,6 @@ code {
         monospace;
 }
 
-
-
 @layer base {
   :root {
         --background: 0 0% 100%;
@@ -26,7 +24,7 @@ code {
         --card-foreground: 0 0% 3.9%;
         --popover: 0 0% 100%;
         --popover-foreground: 0 0% 3.9%;
-        --primary: 0 0% 9%;
+        --primary: 24 100% 60%;
         --primary-foreground: 0 0% 98%;
         --secondary: 0 0% 96.1%;
         --secondary-foreground: 0 0% 9%;
@@ -38,8 +36,8 @@ code {
         --destructive-foreground: 0 0% 98%;
         --border: 0 0% 89.8%;
         --input: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --chart-1: 12 76% 61%;
+        --ring: 24 100% 60%;
+        --chart-1: 24 100% 60%;
         --chart-2: 173 58% 39%;
         --chart-3: 197 37% 24%;
         --chart-4: 43 74% 66%;
@@ -47,25 +45,25 @@ code {
         --radius: 0.5rem;
     }
   .dark {
-        --background: 0 0% 3.9%;
+        --background: 240 10% 4%;
         --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
+        --card: 240 10% 4%;
         --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
+        --popover: 240 10% 4%;
         --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
+        --primary: 24 100% 60%;
         --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
+        --secondary: 240 4% 15%;
         --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
+        --muted: 240 4% 15%;
         --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
+        --accent: 240 4% 15%;
         --accent-foreground: 0 0% 98%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
+        --border: 240 4% 15%;
+        --input: 240 4% 15%;
+        --ring: 24 100% 60%;
         --chart-1: 220 70% 50%;
         --chart-2: 160 60% 45%;
         --chart-3: 30 80% 55%;
@@ -74,8 +72,6 @@ code {
     }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
@@ -83,4 +79,52 @@ code {
   body {
     @apply bg-background text-foreground;
     }
+}
+
+/* MTV Brand Colors - Orange/Red Theme */
+:root {
+  --mtv-primary: #FF6B35;
+  --mtv-secondary: #F7931E;
+  --mtv-accent: #FF8C42;
+  --mtv-dark: #0A0A0B;
+  --mtv-gradient: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+}
+
+/* Custom MTV styling overrides */
+.mtv-gradient {
+  background: var(--mtv-gradient);
+}
+
+.mtv-primary {
+  background-color: var(--mtv-primary);
+}
+
+.mtv-text-primary {
+  color: var(--mtv-primary);
+}
+
+.mtv-border-primary {
+  border-color: var(--mtv-primary);
+}
+
+/* Button overrides for MTV theme */
+.btn-mtv-primary {
+  background: var(--mtv-gradient);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-mtv-primary:hover {
+  background: linear-gradient(135deg, #F7931E 0%, #FF6B35 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+}
+
+/* Quality badge with MTV colors */
+.mtv-quality-badge {
+  background: var(--mtv-gradient);
+  color: white;
+  font-weight: bold;
 }
