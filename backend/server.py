@@ -797,7 +797,7 @@ async def startup_event():
     if not existing_admin:
         admin_doc = {
             "username": admin_username,
-            "email": f"{admin_username}@onstream.local",
+            "email": f"{admin_username}@onstream.com",
             "password_hash": get_password_hash(admin_password),
             "is_admin": True,
             "created_at": datetime.utcnow(),
