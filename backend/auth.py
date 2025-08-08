@@ -7,7 +7,13 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from motor.motor_asyncio import AsyncIOMotorClient
 from models import User, UserInDB, TokenData
+from dotenv import load_dotenv
+from pathlib import Path
 import logging
+
+# Load environment variables
+ROOT_DIR = Path(__file__).parent
+load_dotenv(ROOT_DIR / '.env', override=True)
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +25,8 @@ security = HTTPBearer()
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "fallback_secret_key")
 ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", "1440"))
+
+logger.info(f"JWT SECRET_KEY loaded: {'Yes' if SECRET_KEY != 'fallback_secret_key' else 'No'}")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify a password against its hash."""
