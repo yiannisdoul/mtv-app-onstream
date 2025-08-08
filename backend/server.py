@@ -501,7 +501,7 @@ async def get_genres_list(request: Request):
 @api_router.post("/favorites", response_model=APIResponse)
 @limiter.limit("30/minute")
 async def add_to_favorites(
-    request,
+    request: Request,
     favorite_data: FavoriteRequest,
     current_user: User = Depends(get_current_user_with_db),
     db = Depends(get_db)
