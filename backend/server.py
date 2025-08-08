@@ -232,7 +232,7 @@ async def get_current_user_info(request: Request, current_user: User = Depends(g
 @api_router.get("/movies", response_model=APIResponse)
 @limiter.limit("60/minute")
 async def get_movies(
-    request,
+    request: Request,
     page: int = Query(1, ge=1),
     type_filter: Optional[str] = Query(None, alias="type"),
     genre: Optional[str] = Query(None),
