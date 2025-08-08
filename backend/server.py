@@ -98,6 +98,9 @@ async def get_current_user_with_db(
         if not user_doc:
             raise HTTPException(status_code=401, detail="User not found")
         
+        # Convert ObjectId to string
+        user_doc["_id"] = str(user_doc["_id"])
+        
         # Update last login
         await db.users.update_one(
             {"username": username},
@@ -105,6 +108,11 @@ async def get_current_user_with_db(
         )
         
         return User(**user_doc)
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired")
+    except jwt.JWTError as e:
+        logger.error(f"JWT error: {str(e)}")
+        raise HTTPException(status_code=401, detail="Could not validate credentials")
     except Exception as e:
         logger.error(f"Auth error: {str(e)}")
         raise HTTPException(status_code=401, detail="Could not validate credentials")
