@@ -179,6 +179,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ NOT WORKING - Login form displays correctly with username/password fields and quick login buttons. However, authentication fails - both manual login (admin/admin123) and quick login buttons fail to authenticate. Backend logs show 401 Unauthorized errors. Users cannot log in successfully."
+      - working: false
+        agent: "testing"
+        comment: "❌ AUTHENTICATION BROKEN - Login form works but authentication fails with 401 errors. Backend logs show Pydantic validation error: 'email value is not a valid email address: admin@onstream.local'. Email validation is too strict, preventing login with test credentials. Users cannot access protected features like watchlist."
 
   - task: "Video Player Integration"
     implemented: true
