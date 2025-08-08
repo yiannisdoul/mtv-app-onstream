@@ -149,6 +149,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ WORKING - Search page loads with search input and filters. Search functionality works for specific terms like 'Spider' returning 1 result. Some search terms may return no results but the search mechanism is functional."
+      - working: true
+        agent: "testing"
+        comment: "✅ CONFIRMED WORKING - Search functionality works from navbar. Searching 'Batman' returns 1 result and properly redirects to search page. Search input is accessible and functional. Real TMDB data is being searched and returned correctly."
 
   - task: "Movie Details Page"
     implemented: true
