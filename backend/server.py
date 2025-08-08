@@ -443,7 +443,7 @@ async def search_content(
 
 @api_router.get("/trending", response_model=APIResponse)
 @limiter.limit("60/minute")
-async def get_trending_content(request, db = Depends(get_db)):
+async def get_trending_content(request: Request, db = Depends(get_db)):
     """Get trending movies and TV shows."""
     try:
         # Get trending from TMDB
