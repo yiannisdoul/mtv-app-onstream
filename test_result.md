@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the OnStream integrated frontend-backend application thoroughly. This is a complete movie streaming app with real backend integration including TMDB API data, streaming sources, authentication, and user features."
+user_problem_statement: "Complete MTV branding update for the streaming application. This involves updating all remaining visual elements, colors, and branding from the previous OnStream identity to the new MTV (Movies & TV) brand using the provided orange/red logo design."
 
 frontend:
   - task: "Homepage Loading with Real TMDB Data"
