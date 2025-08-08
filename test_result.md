@@ -243,7 +243,7 @@ frontend:
 backend:
   - task: "TMDB API Integration"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
@@ -252,30 +252,39 @@ backend:
       - working: "NA"
         agent: "testing"
         comment: "Backend integration - will be tested through frontend API calls"
+      - working: true
+        agent: "testing"
+        comment: "✅ WORKING - TMDB API integration is functional. Real movie data is being fetched and cached successfully. Trending movies, popular content, and movie details are loading from TMDB API with proper metadata."
 
   - task: "Streaming Sources API"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Backend integration - will be tested through frontend streaming functionality"
+      - working: false
+        agent: "testing"
+        comment: "❌ NOT WORKING - Streaming sources API has critical issues. Backend logs show 'Consumet API request failed' with 200 status but unexpected mimetype 'text/html'. Pydantic validation errors for StreamResponse _id field. Streaming sources are not being served to frontend."
 
   - task: "User Authentication API"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Backend integration - will be tested through frontend login/register"
+      - working: false
+        agent: "testing"
+        comment: "❌ NOT WORKING - Authentication API has issues. Login requests return 200 OK but subsequent /auth/me requests return 401 Unauthorized. JWT token validation is failing. Users cannot maintain authenticated sessions."
 
 metadata:
   created_by: "testing_agent"
