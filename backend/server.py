@@ -23,6 +23,11 @@ from database import db_service
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# Ensure environment variables are loaded
+print(f"Loading environment from: {ROOT_DIR / '.env'}")
+print(f"TMDB_API_KEY loaded: {'Yes' if os.getenv('TMDB_API_KEY') else 'No'}")
+print(f"MONGO_URL loaded: {'Yes' if os.getenv('MONGO_URL') else 'No'}")
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
