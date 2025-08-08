@@ -288,6 +288,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ STREAMING API NOW WORKING! Final testing confirmed that streaming sources are being successfully served to frontend. The Watch Now button triggers successful API calls that return valid VidSrc.to embed URLs. Backend is properly generating streaming sources for movies. The previous Consumet API issues appear to have been resolved or bypassed."
+      - working: true
+        agent: "testing"
+        comment: "✅ POST-MTV BRANDING VERIFICATION - Streaming Sources API confirmed working. Get Movie Streams endpoint successfully retrieved 3 streaming sources for Fight Club (movie ID 550). Core streaming functionality remains fully operational after frontend branding updates."
 
   - task: "User Authentication API"
     implemented: true
