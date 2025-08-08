@@ -386,7 +386,7 @@ async def get_movie_streams(movie_id: int, request: Request, db = Depends(get_db
 @api_router.get("/search", response_model=APIResponse)
 @limiter.limit("60/minute")
 async def search_content(
-    request,
+    request: Request,
     q: str = Query(..., min_length=2, description="Search query"),
     page: int = Query(1, ge=1),
     db = Depends(get_db)
