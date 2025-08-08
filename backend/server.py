@@ -129,7 +129,7 @@ def normalize_movie_data(movie_data: Dict[str, Any]) -> Dict[str, Any]:
 # Authentication Endpoints
 @api_router.post("/auth/register", response_model=APIResponse)
 @limiter.limit("5/minute")
-async def register_user(user_data: UserCreate, request, db = Depends(get_db)):
+async def register_user(user_data: UserCreate, request: Request, db = Depends(get_db)):
     """Register a new user."""
     try:
         # Check if user already exists
