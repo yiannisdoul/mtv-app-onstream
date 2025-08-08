@@ -21,12 +21,23 @@ from external_apis import *
 from database import db_service
 
 ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+env_file = ROOT_DIR / '.env'
 
-# Ensure environment variables are loaded
-print(f"Loading environment from: {ROOT_DIR / '.env'}")
-print(f"TMDB_API_KEY loaded: {'Yes' if os.getenv('TMDB_API_KEY') else 'No'}")
-print(f"MONGO_URL loaded: {'Yes' if os.getenv('MONGO_URL') else 'No'}")
+# Force load environment variables
+load_dotenv(env_file, override=True)
+
+# Verify key environment variables are loaded
+TMDB_API_KEY = os.getenv('TMDB_API_KEY')
+if TMDB_API_KEY:
+    logger.info(f"✅ TMDB API Key loaded successfully")
+else:
+    logger.error(f"❌ TMDB API Key not found in environment")
+    
+MONGO_URL = os.getenv('MONGO_URL')
+if MONGO_URL:
+    logger.info(f"✅ MongoDB URL loaded successfully")
+else:
+    logger.error(f"❌ MongoDB URL not found in environment")
 
 # Configure logging
 logging.basicConfig(
