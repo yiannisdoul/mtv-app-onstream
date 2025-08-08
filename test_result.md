@@ -317,12 +317,9 @@ metadata:
 
 test_plan:
   current_focus: []
-  stuck_tasks:
-    - "Authentication System"
-    - "User Features (Favorites/Watchlist)"
-    - "User Authentication API"
-  test_all: true
-  test_priority: "high_first"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "completed"
 
 agent_communication:
   - agent: "main"
