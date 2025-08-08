@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: onstream_mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: onstream
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./backend/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - onstream_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: onstream_backend
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URL=mongodb://admin:password123@mongodb:27017/onstream?authSource=admin
+      - DB_NAME=onstream
+      - TMDB_API_KEY=${TMDB_API_KEY:-c8dea14dc917687ac631a52620e4f7ad}
+      - CONSUMET_API_BASE=${CONSUMET_API_BASE:-https://api.consumet.org}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-onstream_super_secret_key_change_in_production_2024}
+      - JWT_ALGORITHM=HS256
+      - JWT_ACCESS_TOKEN_EXPIRE_MINUTES=1440
+      - RATE_LIMIT_PER_MINUTE=100
+      - CACHE_TTL_METADATA=86400
+      - CACHE_TTL_STREAMS=3600
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - DEBUG=False
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000}
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend:/app
+    networks:
+      - onstream_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: onstream_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost:8001}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - onstream_network
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: onstream_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - onstream_network
+
+volumes:
+  mongodb_data:
+  redis_data:
+
+networks:
+  onstream_network:
+    driver: bridge
