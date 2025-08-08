@@ -194,6 +194,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ NOT WORKING - Video player UI component is well-implemented with iframe support for embed URLs, controls, server selection, and error handling. However, streaming sources are not loading due to backend errors. Backend logs show Consumet API failures and Pydantic validation errors preventing streaming sources from being served."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL FAILURE - Play Now button is present and clickable but shows 'No Sources Available' error message. Backend streaming API (/api/movies/{id}/stream) returns 200 OK but no valid streaming sources. Backend logs show Pydantic validation errors for _id field and Consumet API failures. Users CANNOT watch movies - this is the core functionality failure."
 
   - task: "User Features (Favorites/Watchlist)"
     implemented: true
