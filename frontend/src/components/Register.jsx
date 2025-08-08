@@ -142,11 +142,11 @@ const Register = () => {
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-gray-800 border-gray-700">
         <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-lg flex items-center justify-center mb-4">
-            <span className="text-white font-bold text-xl">OS</span>
+          <div className="mx-auto w-12 h-12 mtv-gradient rounded-lg flex items-center justify-center mb-4 shadow-lg">
+            <span className="text-white font-black text-xl">MTV</span>
           </div>
           <CardTitle className="text-white text-2xl">Create Account</CardTitle>
-          <p className="text-gray-400">Join OnStream for unlimited entertainment</p>
+          <p className="text-gray-400">Join MTV for unlimited entertainment</p>
         </CardHeader>
 
         <CardContent>
@@ -162,7 +162,7 @@ const Register = () => {
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="Choose a username"
-                className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
+                className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-mtv-primary"
                 disabled={isLoading}
               />
             </div>
@@ -178,7 +178,7 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
-                className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
+                className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-mtv-primary"
                 disabled={isLoading}
               />
             </div>
@@ -195,7 +195,7 @@ const Register = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Create a password"
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500 pr-10"
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-mtv-primary pr-10"
                   disabled={isLoading}
                 />
                 <button
@@ -221,7 +221,7 @@ const Register = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="Confirm your password"
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500 pr-10"
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-mtv-primary pr-10"
                   disabled={isLoading}
                 />
                 <button
@@ -237,7 +237,7 @@ const Register = () => {
 
             <Button
               type="submit"
-              className="w-full bg-red-600 hover:bg-red-700 text-white"
+              className="w-full mtv-gradient hover:opacity-90 text-white font-semibold"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -257,7 +257,7 @@ const Register = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-400 text-sm">
               Already have an account?{' '}
-              <Link to="/login" className="text-red-400 hover:text-red-300 font-medium">
+              <Link to="/login" className="mtv-text-primary hover:text-mtv-secondary font-medium">
                 Sign in
               </Link>
             </p>

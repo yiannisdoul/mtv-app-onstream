@@ -160,8 +160,8 @@ const ContentRow = ({ title, content }) => {
                   </div>
                 </div>
 
-                {/* Quality Badge */}
-                <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 text-xs rounded">
+                {/* Quality Badge with MTV Branding */}
+                <div className="absolute top-2 left-2 mtv-quality-badge px-2 py-1 text-xs rounded font-semibold">
                   HD
                 </div>
 

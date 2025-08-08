@@ -187,7 +187,9 @@ const MovieDetails = () => {
     return (
       <div className="pt-20 pb-20 md:pb-8 bg-gray-900 min-h-screen flex items-center justify-center">
         <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+          <div className="w-12 h-12 mtv-gradient rounded-lg flex items-center justify-center mx-auto mb-4 shadow-lg animate-pulse">
+            <span className="text-white font-black text-xl">MTV</span>
+          </div>
           <p>Loading movie details...</p>
         </div>
       </div>
@@ -199,7 +201,7 @@ const MovieDetails = () => {
       <div className="pt-20 pb-20 md:pb-8 bg-gray-900 min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-white text-2xl mb-4">Content not found</h2>
-          <Link to="/" className="text-red-400 hover:text-red-300">
+          <Link to="/" className="mtv-text-primary hover:text-mtv-secondary">
             Go back to home
           </Link>
         </div>
@@ -217,7 +219,7 @@ const MovieDetails = () => {
         <div className="px-4 mb-6">
           <Link
             to="/"
-            className="inline-flex items-center text-gray-400 hover:text-white transition-colors"
+            className="inline-flex items-center text-gray-400 hover:text-mtv-primary transition-colors"
           >
             <ChevronLeft className="h-5 w-5 mr-1" />
             Back to Home
@@ -280,7 +282,7 @@ const MovieDetails = () => {
                     {movie.number_of_seasons && (
                       <span>{movie.number_of_seasons} Season{movie.number_of_seasons > 1 ? 's' : ''}</span>
                     )}
-                    <Badge className="bg-red-600 text-white">
+                    <Badge className="mtv-quality-badge">
                       HD
                     </Badge>
                     {movie.type && (
@@ -313,7 +315,7 @@ const MovieDetails = () => {
                   <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
                     <Button
                       onClick={handlePlay}
-                      className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg"
+                      className="mtv-gradient hover:opacity-90 text-white px-8 py-3 text-lg font-semibold"
                       disabled={sourcesLoading}
                     >
                       <Play className="h-5 w-5 mr-2 fill-current" />
@@ -362,7 +364,7 @@ const MovieDetails = () => {
                 </h3>
                 {sources.length > 1 && (
                   <Select value={selectedServer} onValueChange={setSelectedServer}>
-                    <SelectTrigger className="w-[160px] bg-gray-700 border-gray-600 text-white">
+                    <SelectTrigger className="w-[160px] bg-gray-700 border-gray-600 text-white focus:border-mtv-primary">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-gray-700 border-gray-600">
