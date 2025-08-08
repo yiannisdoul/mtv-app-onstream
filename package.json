@@ -1,0 +1,57 @@
+{
+  "name": "onstream-app",
+  "version": "1.0.0",
+  "description": "OnStream - Free Movies & TV Shows Streaming Platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && python server.py\" \"cd frontend && yarn start\"",
+    "build": "cd frontend && yarn build",
+    "build:android": "./scripts/build-android.sh",
+    "deploy:docker": "docker-compose up -d --build",
+    "deploy:railway": "railway up",
+    "deploy:vercel": "cd frontend && vercel --prod",
+    "setup:dev": "./scripts/setup-dev.sh",
+    "setup:android": "./scripts/setup-android.sh",
+    "test:backend": "cd backend && python -m pytest",
+    "test:frontend": "cd frontend && yarn test",
+    "generate:icons": "node generate-icons.js",
+    "health:check": "curl -f http://localhost:3000/health",
+    "logs:docker": "docker-compose logs -f",
+    "clean": "cd frontend && rm -rf build node_modules && cd ../backend && rm -rf __pycache__"
+  },
+  "keywords": [
+    "streaming",
+    "movies",
+    "tv-shows",
+    "pwa",
+    "android",
+    "mobile",
+    "free",
+    "entertainment"
+  ],
+  "author": "OnStream Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/onstream.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/onstream/issues"
+  },
+  "homepage": "https://github.com/yourusername/onstream#readme",
+  "devDependencies": {
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
+    "concurrently": "^8.0.0"
+  },
+  "capacitor": {
+    "appId": "com.onstream.app",
+    "appName": "OnStream",
+    "webDir": "frontend/build"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
