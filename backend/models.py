@@ -76,7 +76,7 @@ class Genre(BaseModel):
     name: str
 
 class MovieMetadata(BaseModel):
-    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     tmdb_id: int
     title: str
     overview: str
@@ -98,9 +98,8 @@ class MovieMetadata(BaseModel):
     expires_at: datetime
 
     class Config:
-        validate_by_name = True
+        populate_by_name = True
         arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
 
 class StreamSource(BaseModel):
     url: str
