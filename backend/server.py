@@ -537,7 +537,7 @@ async def add_to_favorites(
 @limiter.limit("30/minute")
 async def remove_from_favorites(
     movie_id: int,
-    request,
+    request: Request,
     current_user: User = Depends(get_current_user_with_db),
     db = Depends(get_db)
 ):
@@ -568,7 +568,7 @@ async def remove_from_favorites(
 @api_router.get("/favorites", response_model=APIResponse)
 @limiter.limit("60/minute")
 async def get_user_favorites(
-    request,
+    request: Request,
     page: int = Query(1, ge=1),
     current_user: User = Depends(get_current_user_with_db),
     db = Depends(get_db)
@@ -594,7 +594,7 @@ async def get_user_favorites(
 @api_router.post("/watch-history", response_model=APIResponse)
 @limiter.limit("30/minute")
 async def add_to_watch_history(
-    request,
+    request: Request,
     watch_data: WatchHistoryRequest,
     current_user: User = Depends(get_current_user_with_db),
     db = Depends(get_db)
@@ -629,7 +629,7 @@ async def add_to_watch_history(
 @api_router.get("/watch-history", response_model=APIResponse)
 @limiter.limit("60/minute")
 async def get_watch_history(
-    request,
+    request: Request,
     page: int = Query(1, ge=1),
     current_user: User = Depends(get_current_user_with_db),
     db = Depends(get_db)
@@ -656,7 +656,7 @@ async def get_watch_history(
 @limiter.limit("30/minute")
 async def remove_from_watch_history(
     movie_id: int,
-    request,
+    request: Request,
     current_user: User = Depends(get_current_user_with_db),
     db = Depends(get_db)
 ):
@@ -688,7 +688,7 @@ async def remove_from_watch_history(
 @api_router.get("/admin/stats", response_model=APIResponse)
 @limiter.limit("30/minute")
 async def get_system_stats(
-    request,
+    request: Request,
     current_admin: User = Depends(get_current_admin_user_with_db),
     db = Depends(get_db)
 ):
@@ -713,7 +713,7 @@ async def get_system_stats(
 @api_router.post("/admin/cache/clear", response_model=APIResponse)
 @limiter.limit("10/minute")
 async def clear_cache(
-    request,
+    request: Request,
     current_admin: User = Depends(get_current_admin_user_with_db),
     db = Depends(get_db),
     background_tasks: BackgroundTasks = BackgroundTasks()
