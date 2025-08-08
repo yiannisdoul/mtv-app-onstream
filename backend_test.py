@@ -12,7 +12,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 # Get backend URL from frontend .env
-BACKEND_URL = "https://51865a78-a773-4e90-9ed3-74a4621d6211.preview.emergentagent.com"
+BACKEND_URL = "http://localhost:8001"  # Use local backend for testing
 API_BASE = f"{BACKEND_URL}/api"
 
 class OnStreamAPITester:
