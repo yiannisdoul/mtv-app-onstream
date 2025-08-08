@@ -357,18 +357,18 @@ async def get_movie_details(movie_id: int, request: Request, db = Depends(get_db
 
 @api_router.get("/movies/{movie_id}/stream", response_model=APIResponse)
 @limiter.limit("30/minute")
-async def get_movie_streams(movie_id: int, request: Request, db = Depends(get_db)):
+async def get_movie_streams(movie_id: int, request: Request, refresh: bool = Query(False), db = Depends(get_db)):
     """Get streaming sources for a movie/TV show."""
     try:
-        # Check cache first
-        cached_streams = await db_service.get_cached_streams(movie_id)
-        
-        if cached_streams:
-            return APIResponse(
-                success=True,
-                message="Streaming sources retrieved from cache",
-                data=cached_streams.dict()
-            )
+        # Check cache first (unless refresh is requested)
+        if not refresh:
+            cached_streams = await db_service.get_cached_streams(movie_id)
+            if cached_streams and cached_streams.sources:
+                return APIResponse(
+                    success=True,
+                    message="Streaming sources retrieved from cache",
+                    data=cached_streams.dict()
+                )
         
         # Get movie details for title
         movie_data = await get_movie_metadata(movie_id, "movie")
