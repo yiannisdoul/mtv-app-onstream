@@ -134,7 +134,9 @@ const Home = () => {
       <div className="pt-20 pb-20 md:pb-8 bg-gray-900 min-h-screen">
         <div className="flex items-center justify-center h-96">
           <div className="text-white text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+            <div className="w-12 h-12 mtv-gradient rounded-lg flex items-center justify-center mx-auto mb-4 shadow-lg animate-pulse">
+              <span className="text-white font-black text-xl">MTV</span>
+            </div>
             <p>Loading content...</p>
           </div>
         </div>
@@ -147,7 +149,7 @@ const Home = () => {
       <div className="pt-20 pb-20 md:pb-8 bg-gray-900 min-h-screen">
         <div className="text-center py-16">
           <div className="text-gray-400 text-lg mb-4">No content available</div>
-          <Button onClick={loadContent} className="bg-red-600 hover:bg-red-700">
+          <Button onClick={loadContent} className="mtv-gradient hover:opacity-90 text-white font-semibold">
             Retry
           </Button>
         </div>
@@ -187,7 +189,7 @@ const Home = () => {
                     <span>{featured.vote_average?.toFixed(1) || 'N/A'}</span>
                   </div>
                   <span>{featured.release_date?.slice(0, 4) || featured.first_air_date?.slice(0, 4) || 'N/A'}</span>
-                  <span className="px-2 py-1 bg-red-600 text-white text-xs rounded">
+                  <span className="px-2 py-1 mtv-quality-badge text-xs rounded font-semibold">
                     HD
                   </span>
                   {featured.type && (
@@ -235,7 +237,7 @@ const Home = () => {
                 key={index}
                 onClick={() => setCurrentFeatured(index)}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentFeatured ? 'bg-white' : 'bg-gray-600'
+                  index === currentFeatured ? 'bg-mtv-primary' : 'bg-gray-600'
                 }`}
               />
             ))}

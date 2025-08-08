@@ -1,12 +1,13 @@
 {
-  "name": "onstream-app",
+  "name": "mtv-app",
   "version": "1.0.0",
-  "description": "OnStream - Free Movies & TV Shows Streaming Platform",
+  "description": "MTV - Free Movies & TV Shows Streaming Platform",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"cd backend && python server.py\" \"cd frontend && yarn start\"",
     "build": "cd frontend && yarn build",
     "build:android": "./scripts/build-android.sh",
+    "build:mtv": "node generate-mtv-icons.js && ./scripts/build-android.sh",
     "deploy:docker": "docker-compose up -d --build",
     "deploy:railway": "railway up",
     "deploy:vercel": "cd frontend && vercel --prod",
@@ -14,7 +15,7 @@
     "setup:android": "./scripts/setup-android.sh",
     "test:backend": "cd backend && python -m pytest",
     "test:frontend": "cd frontend && yarn test",
-    "generate:icons": "node generate-icons.js",
+    "generate:icons": "node generate-mtv-icons.js",
     "health:check": "curl -f http://localhost:3000/health",
     "logs:docker": "docker-compose logs -f",
     "clean": "cd frontend && rm -rf build node_modules && cd ../backend && rm -rf __pycache__"
@@ -27,18 +28,19 @@
     "android",
     "mobile",
     "free",
-    "entertainment"
+    "entertainment",
+    "mtv"
   ],
-  "author": "OnStream Team",
+  "author": "MTV Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/onstream.git"
+    "url": "https://github.com/yourusername/mtv-app.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/onstream/issues"
+    "url": "https://github.com/yourusername/mtv-app/issues"
   },
-  "homepage": "https://github.com/yourusername/onstream#readme",
+  "homepage": "https://github.com/yourusername/mtv-app#readme",
   "devDependencies": {
     "@capacitor/android": "^5.0.0",
     "@capacitor/cli": "^5.0.0",
@@ -46,8 +48,8 @@
     "concurrently": "^8.0.0"
   },
   "capacitor": {
-    "appId": "com.onstream.app",
-    "appName": "OnStream",
+    "appId": "com.moviesandtv.mtv",
+    "appName": "MTV",
     "webDir": "frontend/build"
   },
   "engines": {

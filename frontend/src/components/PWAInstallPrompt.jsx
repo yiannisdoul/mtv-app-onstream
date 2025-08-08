@@ -88,11 +88,11 @@ const PWAInstallPrompt = () => {
         <div className="p-4">
           <div className="flex items-start justify-between mb-3">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-red-600 to-red-700 rounded flex items-center justify-center">
-                <span className="text-white font-bold text-sm">OS</span>
+              <div className="w-8 h-8 mtv-gradient rounded flex items-center justify-center shadow-lg">
+                <span className="text-white font-black text-xs">MTV</span>
               </div>
               <div>
-                <h3 className="text-white font-semibold text-sm">Install OnStream</h3>
+                <h3 className="text-white font-semibold text-sm">Install MTV</h3>
                 <p className="text-gray-400 text-xs">Get the app experience</p>
               </div>
             </div>
@@ -110,20 +110,20 @@ const PWAInstallPrompt = () => {
             // iOS Installation Instructions
             <div className="space-y-3">
               <p className="text-gray-300 text-sm">
-                Install OnStream for the best mobile experience:
+                Install MTV for the best mobile experience:
               </p>
               <div className="space-y-2 text-xs text-gray-400">
                 <div className="flex items-center space-x-2">
-                  <span className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xs">1</span>
+                  <span className="w-4 h-4 mtv-primary rounded-full flex items-center justify-center text-white font-bold text-xs">1</span>
                   <span>Tap the Share button in Safari</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xs">2</span>
+                  <span className="w-4 h-4 mtv-primary rounded-full flex items-center justify-center text-white font-bold text-xs">2</span>
                   <span>Scroll down and tap "Add to Home Screen"</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xs">3</span>
-                  <span>Tap "Add" to install OnStream</span>
+                  <span className="w-4 h-4 mtv-primary rounded-full flex items-center justify-center text-white font-bold text-xs">3</span>
+                  <span>Tap "Add" to install MTV</span>
                 </div>
               </div>
               <div className="flex space-x-2">
@@ -141,7 +141,7 @@ const PWAInstallPrompt = () => {
             // Android/Chrome Installation
             <div className="space-y-3">
               <p className="text-gray-300 text-sm">
-                Install OnStream for offline access and faster loading!
+                Install MTV for offline access and faster loading!
               </p>
               <div className="flex items-center space-x-2 text-xs text-gray-400">
                 <Smartphone className="h-4 w-4" />
@@ -150,7 +150,7 @@ const PWAInstallPrompt = () => {
               <div className="flex space-x-2">
                 <Button
                   onClick={handleInstall}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                  className="flex-1 mtv-gradient hover:opacity-90 text-white font-semibold"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Install App

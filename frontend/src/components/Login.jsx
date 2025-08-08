@@ -80,11 +80,11 @@ const Login = () => {
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-gray-800 border-gray-700">
         <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-lg flex items-center justify-center mb-4">
-            <span className="text-white font-bold text-xl">OS</span>
+          <div className="mx-auto w-12 h-12 mtv-gradient rounded-lg flex items-center justify-center mb-4 shadow-lg">
+            <span className="text-white font-black text-xl">MTV</span>
           </div>
           <CardTitle className="text-white text-2xl">Welcome Back</CardTitle>
-          <p className="text-gray-400">Sign in to your OnStream account</p>
+          <p className="text-gray-400">Sign in to your MTV account</p>
         </CardHeader>
 
         <CardContent>
@@ -100,7 +100,7 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="Enter your username"
-                className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
+                className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-mtv-primary"
                 disabled={isLoading}
               />
             </div>
@@ -117,7 +117,7 @@ const Login = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your password"
-                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500 pr-10"
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-mtv-primary pr-10"
                   disabled={isLoading}
                 />
                 <button
@@ -133,7 +133,7 @@ const Login = () => {
 
             <Button
               type="submit"
-              className="w-full bg-red-600 hover:bg-red-700 text-white"
+              className="w-full mtv-gradient hover:opacity-90 text-white font-semibold"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -178,7 +178,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-400 text-sm">
               Don't have an account?{' '}
-              <Link to="/register" className="text-red-400 hover:text-red-300 font-medium">
+              <Link to="/register" className="mtv-text-primary hover:text-mtv-secondary font-medium">
                 Sign up
               </Link>
             </p>
