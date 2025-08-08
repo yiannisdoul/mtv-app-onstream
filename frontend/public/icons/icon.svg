@@ -1,12 +1,26 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    <linearGradient id="mtvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F7931E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFF8DC;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="80" fill="url(#grad)"/>
-  <rect x="64" y="64" width="384" height="384" rx="40" fill="white" opacity="0.1"/>
-  <text x="256" y="320" font-family="Arial Black, sans-serif" font-size="200" font-weight="bold" text-anchor="middle" fill="white">OS</text>
-  <circle cx="400" cy="150" r="20" fill="white" opacity="0.8"/>
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#mtvGrad)" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
+  <!-- Inner glow -->
+  <circle cx="256" cy="256" r="200" fill="rgba(255,255,255,0.05)" />
+  <!-- MTV Text with modern styling -->
+  <text x="256" y="300" font-family="Arial Black, Helvetica, sans-serif" font-size="140" font-weight="900" text-anchor="middle" fill="url(#textGrad)" stroke="rgba(0,0,0,0.2)" stroke-width="2">MTV</text>
+  <!-- Subtitle -->
+  <text x="256" y="360" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="rgba(255,255,255,0.8)">Movies & TV</text>
+  <!-- Decorative elements -->
+  <circle cx="180" cy="180" r="8" fill="rgba(255,255,255,0.3)" />
+  <circle cx="350" cy="150" r="6" fill="rgba(255,255,255,0.4)" />
+  <circle cx="380" cy="320" r="10" fill="rgba(255,255,255,0.2)" />
+  <circle cx="150" cy="350" r="7" fill="rgba(255,255,255,0.35)" />
 </svg>
