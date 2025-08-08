@@ -65,7 +65,7 @@ const Watchlist = () => {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-3 mb-4">
-            <Heart className="h-6 w-6 text-red-500 fill-current" />
+            <Heart className="h-6 w-6 text-mtv-primary fill-current" />
             <h1 className="text-white text-2xl md:text-3xl font-bold">My List</h1>
           </div>
           <p className="text-gray-400">
@@ -81,7 +81,7 @@ const Watchlist = () => {
               Add movies and TV shows you want to watch later
             </div>
             <Link to="/browse">
-              <Button className="bg-red-600 hover:bg-red-700 text-white">
+              <Button className="mtv-gradient hover:opacity-90 text-white font-semibold">
                 <Plus className="h-4 w-4 mr-2" />
                 Browse Content
               </Button>
@@ -108,7 +108,7 @@ const Watchlist = () => {
                     <div>
                       <Link 
                         to={`/movie/${item.id}`}
-                        className="hover:text-red-400 transition-colors"
+                        className="hover:text-mtv-primary transition-colors"
                       >
                         <h3 className="text-white text-lg font-semibold mb-2">
                           {item.title}
@@ -126,7 +126,7 @@ const Watchlist = () => {
                         ) : (
                           <span>{item.duration}</span>
                         )}
-                        <span className="px-2 py-1 bg-red-600 text-white text-xs rounded">
+                        <span className="px-2 py-1 mtv-quality-badge text-xs rounded font-semibold">
                           {item.quality}
                         </span>
                       </div>
@@ -172,7 +172,7 @@ const Watchlist = () => {
                       <Button
                         onClick={() => handleRemoveFromList(item.id)}
                         variant="outline"
-                        className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white"
+                        className="border-mtv-primary text-mtv-primary hover:bg-mtv-primary hover:text-white"
                       >
                         <Trash2 className="h-4 w-4 mr-2" />
                         Remove
@@ -192,7 +192,7 @@ const Watchlist = () => {
               Want to add more content to your list?
             </p>
             <Link to="/browse">
-              <Button variant="outline" className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white">
+              <Button variant="outline" className="border-mtv-primary text-mtv-primary hover:bg-mtv-primary hover:text-white">
                 <Plus className="h-4 w-4 mr-2" />
                 Browse More Content
               </Button>

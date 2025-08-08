@@ -24,14 +24,14 @@ function App() {
 
   // Add PWA meta tags and theme
   useEffect(() => {
-    // Set theme color for PWA
+    // Set MTV theme color for PWA
     let metaThemeColor = document.querySelector("meta[name=theme-color]");
     if (!metaThemeColor) {
       metaThemeColor = document.createElement("meta");
       metaThemeColor.name = "theme-color";
       document.head.appendChild(metaThemeColor);
     }
-    metaThemeColor.content = "#ef4444";
+    metaThemeColor.content = "#FF6B35";
 
     // Set viewport for mobile PWA
     let metaViewport = document.querySelector("meta[name=viewport]");
@@ -42,11 +42,11 @@ function App() {
     }
     metaViewport.content = "width=device-width, initial-scale=1.0, viewport-fit=cover";
 
-    // Add apple-mobile-web-app tags for iOS
+    // Add apple-mobile-web-app tags for iOS with MTV branding
     const appleTags = [
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { name: "apple-mobile-web-app-title", content: "OnStream" }
+      { name: "apple-mobile-web-app-title", content: "MTV" }
     ];
 
     appleTags.forEach(tag => {
@@ -68,8 +68,8 @@ function App() {
       document.head.appendChild(appleIcon);
     }
 
-    // Update document title for PWA
-    document.title = "OnStream - Free Movies & TV Shows";
+    // Update document title for MTV PWA
+    document.title = "MTV - Free Movies & TV Shows";
   }, []);
 
   return (
@@ -77,7 +77,7 @@ function App() {
       <div className="App bg-gray-900 min-h-screen">
         {/* Offline Indicator */}
         {!isOnline && (
-          <div className="fixed top-0 left-0 right-0 bg-red-600 text-white text-center py-2 text-sm z-50">
+          <div className="fixed top-0 left-0 right-0 bg-mtv-primary text-white text-center py-2 text-sm z-50">
             📶 You're offline. Some features may not work.
           </div>
         )}

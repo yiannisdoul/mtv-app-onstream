@@ -63,7 +63,7 @@ const Search = ({ searchQuery }) => {
               placeholder="Search movies, TV shows, genres..."
               value={localQuery}
               onChange={(e) => setLocalQuery(e.target.value)}
-              className="pl-12 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-red-500 text-lg py-3"
+              className="pl-12 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-mtv-primary transition-colors text-lg py-3"
             />
           </div>
 
@@ -75,7 +75,7 @@ const Search = ({ searchQuery }) => {
             </div>
             
             <Select value={selectedType} onValueChange={setSelectedType}>
-              <SelectTrigger className="w-[140px] bg-gray-800 border-gray-700 text-white">
+              <SelectTrigger className="w-[140px] bg-gray-800 border-gray-700 text-white focus:border-mtv-primary">
                 <SelectValue placeholder="Type" />
               </SelectTrigger>
               <SelectContent className="bg-gray-800 border-gray-700">
@@ -86,7 +86,7 @@ const Search = ({ searchQuery }) => {
             </Select>
 
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger className="w-[140px] bg-gray-800 border-gray-700 text-white">
+              <SelectTrigger className="w-[140px] bg-gray-800 border-gray-700 text-white focus:border-mtv-primary">
                 <SelectValue placeholder="Genre" />
               </SelectTrigger>
               <SelectContent className="bg-gray-800 border-gray-700">

@@ -124,7 +124,9 @@ const Downloads = () => {
                           </h3>
                           <div className="flex items-center space-x-4 text-sm text-gray-400 mb-2">
                             <span>{download.year}</span>
-                            <span>{download.quality}</span>
+                            <span className="px-2 py-1 mtv-quality-badge text-xs rounded font-semibold">
+                              {download.quality}
+                            </span>
                             <span>{download.size}</span>
                           </div>
                           
@@ -140,6 +142,7 @@ const Downloads = () => {
                             <Progress 
                               value={download.progress} 
                               className="h-2 bg-gray-700"
+                              style={{'--progress-foreground': 'var(--mtv-primary)'}}
                             />
                           </div>
                         </div>
@@ -161,7 +164,7 @@ const Downloads = () => {
                             onClick={() => handleDelete(download.id)}
                             variant="outline"
                             size="sm"
-                            className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white"
+                            className="border-mtv-primary text-mtv-primary hover:bg-mtv-primary hover:text-white"
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
@@ -203,15 +206,15 @@ const Downloads = () => {
                               onClick={() => handleDelete(download.id)}
                               size="sm"
                               variant="outline"
-                              className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white"
+                              className="border-mtv-primary text-mtv-primary hover:bg-mtv-primary hover:text-white"
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
 
-                        {/* Downloaded Badge */}
-                        <div className="absolute top-2 left-2 bg-green-600 text-white px-2 py-1 text-xs rounded flex items-center space-x-1">
+                        {/* Downloaded Badge with MTV styling */}
+                        <div className="absolute top-2 left-2 mtv-gradient text-white px-2 py-1 text-xs rounded flex items-center space-x-1">
                           <CheckCircle className="h-3 w-3" />
                           <span>Downloaded</span>
                         </div>
