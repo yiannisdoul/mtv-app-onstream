@@ -106,7 +106,7 @@ class OnStreamAPITester:
         """Test user registration."""
         test_user = {
             "username": f"testuser_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
-            "email": f"test_{datetime.now().strftime('%Y%m%d_%H%M%S')}@onstream.test",
+            "email": f"test_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com",
             "password": "SecurePass123!"
         }
         
