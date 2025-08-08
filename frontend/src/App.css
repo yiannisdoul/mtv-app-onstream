@@ -1,34 +1,211 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.App {
+  min-height: 100vh;
+  background-color: #111827;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Hide scrollbars for horizontal scrolling content rows */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom progress bar styles */
+.progress-bar {
+  background-color: #ef4444;
+  transition: width 0.3s ease;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Custom hover effects */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient backgrounds */
+.gradient-red {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
+/* Custom focus rings */
+.focus-ring-red:focus {
+  outline: none;
+  ring: 2px solid #ef4444;
+  ring-opacity: 0.5;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Custom text shadows for better readability on images */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Enhanced card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animation */
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Custom backdrop blur for mobile navigation */
+.backdrop-blur-custom {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Enhanced button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Video player styles */
+.video-player {
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Quality badge animations */
+.quality-badge {
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search results highlighting */
+.search-highlight {
+  background-color: rgba(239, 68, 68, 0.2);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+/* Download progress animations */
+.download-progress {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  animation: progress-shine 2s linear infinite;
+}
+
+@keyframes progress-shine {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+/* Responsive grid adjustments */
+@media (min-width: 1280px) {
+  .xl-grid-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+/* Enhanced focus states for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #ef4444;
+  outline-offset: 2px;
+}
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+  .mobile-nav-item {
+    min-height: 48px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  }
 }
 
-.App-link {
-    color: #61dafb;
+/* Content loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
