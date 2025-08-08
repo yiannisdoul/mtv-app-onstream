@@ -119,6 +119,8 @@ class DatabaseService:
         })
         
         if movie_doc:
+            # Convert ObjectId to string
+            movie_doc["_id"] = str(movie_doc["_id"])
             return MovieMetadata(**movie_doc)
         return None
     
