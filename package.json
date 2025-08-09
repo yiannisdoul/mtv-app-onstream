@@ -45,7 +45,8 @@
     "@capacitor/android": "^5.7.8",
     "@capacitor/cli": "^5.7.8",
     "@capacitor/core": "^5.7.8",
-    "concurrently": "^8.0.0"
+    "concurrently": "^8.0.0",
+    "typescript": "^5.9.2"
   },
   "capacitor": {
     "appId": "com.moviesandtv.mtv",
